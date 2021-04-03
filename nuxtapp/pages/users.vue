@@ -1,5 +1,8 @@
 <template>
-  <div>a</div>
+  <div>
+    a
+    <a-skeleton />
+  </div>
 </template>
 
 <script>

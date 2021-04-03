@@ -1,44 +1,52 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger">
+  <a-layout id="components-layout-demo-fixed-sider">
     <a-layout-sider
-      v-model="collapsed"
-      :trigger="null"
-      collapsible
-      :style="{ overflow: 'auto', height: 'auto', left: 0 }"
+      :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
     >
       <div class="logo" />
-      <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-        <a-menu-item key="1" @click="move('/')">
+      <a-menu theme="dark" mode="inline" :default-selected-keys="['4']">
+        <a-menu-item key="1" @click="changeRoute('/')">
           <a-icon type="user" />
-          <span>Home</span>
+          <span class="nav-text">Home</span>
         </a-menu-item>
-        <a-menu-item key="2" @click="move('/users')">
+        <a-menu-item key="2" @click="changeRoute('/users')">
           <a-icon type="video-camera" />
-          <span>Users</span>
+          <span class="nav-text">Users</span>
         </a-menu-item>
         <a-menu-item key="3">
           <a-icon type="upload" />
-          <span>nav 3</span>
+          <span class="nav-text">nav 3</span>
+        </a-menu-item>
+        <a-menu-item key="4">
+          <a-icon type="bar-chart" />
+          <span class="nav-text">nav 4</span>
+        </a-menu-item>
+        <a-menu-item key="5">
+          <a-icon type="cloud-o" />
+          <span class="nav-text">nav 5</span>
+        </a-menu-item>
+        <a-menu-item key="6">
+          <a-icon type="appstore-o" />
+          <span class="nav-text">nav 6</span>
+        </a-menu-item>
+        <a-menu-item key="7">
+          <a-icon type="team" />
+          <span class="nav-text">nav 7</span>
+        </a-menu-item>
+        <a-menu-item key="8">
+          <a-icon type="shop" />
+          <span class="nav-text">nav 8</span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
-        <a-icon
-          class="trigger"
-          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-          @click="() => (collapsed = !collapsed)"
-        />
-      </a-layout-header>
-      <a-layout-content
-        :style="{
-          margin: '24px 16px',
-          padding: '24px',
-          background: '#fff',
-          minHeight: '280px',
-        }"
-      >
-        <Nuxt />
+    <a-layout :style="{ marginLeft: '200px' }">
+      <a-layout-header :style="{ background: '#fff', padding: 0 }" />
+      <a-layout-content :style="{ margin: '24px 16px 0', overflow: 'initial' }">
+        <div
+          :style="{ padding: '24px', background: '#fff', textAlign: 'center' }"
+        >
+          <Nuxt />
+        </div>
       </a-layout-content>
       <a-layout-footer :style="{ textAlign: 'center' }">
         Ant Design ©2018 Created by Ant UED
@@ -48,32 +56,20 @@
 </template>
 <script>
 export default {
+  name: "Default",
   data() {
-    return {
-      collapsed: false,
-    };
+    return {};
   },
   methods: {
-    move(path) {
-      this.$router.push({ path: path, query: { q: this.q } });
+    changeRoute(r) {
+      console.log(r);
+      this.$router.push(r);
     },
   },
 };
 </script>
 <style>
-#components-layout-demo-custom-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: #1890ff;
-}
-
-#components-layout-demo-custom-trigger .logo {
+#components-layout-demo-fixed-sider .logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
